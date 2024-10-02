@@ -88,3 +88,50 @@ func (ll *SinglyLinkedList[T]) Unshift(val T) {
 		ll.Tail = newNode
 	}
 }
+
+func (ll *SinglyLinkedList[T]) Get(idx int) T {
+	if idx < 0 {
+		fmt.Println("Index less than 0")
+		var zero T
+		return zero
+	}
+
+	if idx >= ll.Length {
+		fmt.Println("Index greater than LinkedList length")
+		var zero T
+		return zero
+	}
+
+	i := 0
+	curr := ll.Head
+	for i < idx {
+		curr = curr.Next
+		i++
+	}
+
+	return curr.Val
+}
+
+func (ll *SinglyLinkedList[T]) Set(idx int, val T) T {
+	if idx < 0 {
+		fmt.Println("Index less than 0")
+		var zero T
+		return zero
+	}
+	if idx >= ll.Length {
+		fmt.Println("Index greater than LinkedList length")
+		var zero T
+		return zero
+	}
+
+	i := 0
+	curr := ll.Head
+	for i < idx {
+		curr = curr.Next
+		i++
+	}
+
+	curr.Val = val
+
+	return curr.Val
+}
