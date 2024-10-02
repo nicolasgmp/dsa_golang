@@ -52,3 +52,42 @@ func (ll *SinglyLinkedList[T]) Pop() T {
 	ll.Length--
 	return curr.Val
 }
+
+func (ll *SinglyLinkedList[T]) Shift() T {
+	if ll.Length == 0 {
+		fmt.Println("Empty list")
+		var zero T
+		return zero
+	}
+
+	curr := ll.Head
+	ll.Head = ll.Head.Next
+	ll.Length--
+
+	if ll.Length == 0 {
+		ll.Tail = nil
+	}
+
+	return curr.Val
+}
+
+func (ll *SinglyLinkedList[T]) Unshift(val T) T {
+	if ll.Length == 0 {
+		fmt.Println("Empty list")
+		var zero T
+		return zero
+	}
+
+	newNode := NewNode(val)
+
+	newNode.Next = ll.Head
+	ll.Head = newNode
+
+	ll.Length++
+
+	if ll.Length == 1 {
+		ll.Tail = newNode
+	}
+
+	return newNode.Val
+}
