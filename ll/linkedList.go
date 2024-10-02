@@ -72,12 +72,12 @@ func (ll *SinglyLinkedList[T]) Shift() T {
 }
 
 func (ll *SinglyLinkedList[T]) Unshift(val T) {
-	if ll.Length == 0 {
-		fmt.Println("Empty list")
-		return
-	}
-
 	newNode := NewNode(val)
+
+	if ll.Length == 0 {
+		ll.Head = newNode
+		ll.Tail = newNode
+	}
 
 	newNode.Next = ll.Head
 	ll.Head = newNode
