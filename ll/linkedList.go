@@ -71,11 +71,10 @@ func (ll *SinglyLinkedList[T]) Shift() T {
 	return curr.Val
 }
 
-func (ll *SinglyLinkedList[T]) Unshift(val T) T {
+func (ll *SinglyLinkedList[T]) Unshift(val T) {
 	if ll.Length == 0 {
 		fmt.Println("Empty list")
-		var zero T
-		return zero
+		return
 	}
 
 	newNode := NewNode(val)
@@ -88,6 +87,4 @@ func (ll *SinglyLinkedList[T]) Unshift(val T) T {
 	if ll.Length == 1 {
 		ll.Tail = newNode
 	}
-
-	return newNode.Val
 }
