@@ -14,6 +14,8 @@ func main() {
 	ll.Push("garro")
 	ll.Push("coronado")
 	ll.Set(2, "romero")
+	ll.Insert(2, "yuri alberto")
+	ll.Reverse()
 
 	fmt.Println("Lista Atual")
 	curr := ll.Head

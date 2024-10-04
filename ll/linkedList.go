@@ -113,6 +113,77 @@ func (ll *SinglyLinkedList[T]) Get(idx int) *Node[T] {
 }
 
 func (ll *SinglyLinkedList[T]) Set(idx int, val T) {
+	if idx < 0 {
+		fmt.Println("Index less than 0")
+		return
+	}
+
+	if idx >= ll.Length {
+		fmt.Println("Index greater than LinkedList length")
+		return
+	}
+
 	curr := ll.Get(idx)
 	curr.Val = val
+}
+
+func (ll *SinglyLinkedList[T]) Insert(idx int, val T) {
+	newNode := NewNode(val)
+
+	if idx < 0 {
+		fmt.Println("Index less than 0")
+		return
+	}
+
+	if idx >= ll.Length {
+		fmt.Println("Index greater than LinkedList length")
+		return
+	}
+
+	if idx == 0 {
+		ll.Unshift(val)
+	}
+
+	pre := ll.Get(idx - 1)
+	newNode.Next = pre.Next
+	pre.Next = newNode
+
+	ll.Length++
+}
+
+func (ll *SinglyLinkedList[T]) Remove(idx int) {
+
+	if idx < 0 {
+		fmt.Println("Index less than 0")
+		return
+	}
+
+	if idx >= ll.Length {
+		fmt.Println("Index greater than LinkedList length")
+		return
+	}
+
+	if idx == 0 {
+		ll.Shift()
+	}
+
+	pre := ll.Get(idx - 1)
+	toRm := ll.Get(idx)
+	pre.Next = toRm.Next
+
+	ll.Length--
+}
+
+func (ll *SinglyLinkedList[T]) Reverse() {
+	curr := ll.Head
+	ll.Head = ll.Tail
+	ll.Tail = curr
+	var pre *Node[T]
+	var next *Node[T]
+	for i := 0; i < ll.Length; i++ {
+		next = curr.Next
+		curr.Next = pre
+		pre = curr
+		curr = next
+	}
 }
